@@ -1,0 +1,24 @@
+---
+name: pytest
+on: push
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+          cache: 'pip'
+
+      - name: Run pytest
+        run: |
+          pushd python
+          pip install -r requirements-dev.txt
+          export AWS_DEFAULT_REGION=us-east-1
+          pytest -v
