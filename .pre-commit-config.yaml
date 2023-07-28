@@ -4,3 +4,5 @@ repos:
     hooks:
       - id: terraform_validate
       - id: terraform_docs
+        args:
+          - '--args=--lockfile=false'

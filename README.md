@@ -72,8 +72,8 @@ If there are already a large number of files in the logging buckets, it is sugge
 
 | Name | Version |
 |------|---------|
-| <a name="provider_archive"></a> [archive](#provider\_archive) | 2.4.0 |
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.10.0 |
+| <a name="provider_archive"></a> [archive](#provider\_archive) | >= 2.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.0 |
 
 ## Modules
 
