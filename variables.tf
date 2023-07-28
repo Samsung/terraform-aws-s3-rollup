@@ -6,11 +6,13 @@ variable "slug" {
 variable "subnet_ids" {
   description = "IDs of subnets to run Lambda function in. If null, Lambda runs in Amazon-managed VPC."
   type        = list(string)
+  default     = null
 }
 
 variable "security_group_ids" {
   description = "IDs of security groups to attach to Lambda function. Only valid if var.subnet_ids is not null."
   type        = list(string)
+  default     = null
 }
 
 variable "s3_access_roles" {
