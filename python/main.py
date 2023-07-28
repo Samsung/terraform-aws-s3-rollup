@@ -194,13 +194,10 @@ class RollupTask:
 
 
 class AccessLogRoller:
-
     def __init__(self, queue_name: str):
         self.exec_session = Session()
-
         self._queue = None
         self.queue_name = queue_name
-
         self.client_config = Config(
             max_pool_connections=25,
             retries={
@@ -351,7 +348,7 @@ class AccessLogRoller:
         s3_resource = s3_session.resource('s3', config=self.client_config)
         with tempfile.TemporaryDirectory() as tmpdir:
             print(f'Downloading and compressing {len(task)} files...')
-            local_paths = []
+            local_paths: list[Path] = []
             total_size = 0
             with concurrent.futures.ThreadPoolExecutor() as tpe:
                 futures = {}
@@ -387,7 +384,7 @@ class AccessLogRoller:
             }
             print(f'Uploading {tarball_obj}...')
             tarball_obj.upload_file(
-                Filename=tarball_path,
+                Filename=str(tarball_path),
                 ExtraArgs={'Metadata': metadata}
             )
 
@@ -494,7 +491,7 @@ class AccessLogRoller:
             method='sts-assume-role'
         )
         botocore_session = BotocoreSession()
-        botocore_session._credentials = refreshable_credentials
+        botocore_session._credentials = refreshable_credentials  # type: ignore
         session = Session(botocore_session=botocore_session)
         return session
 
