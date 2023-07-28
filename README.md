@@ -113,5 +113,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_iam_role_arn"></a> [iam\_role\_arn](#output\_iam\_role\_arn) | IAM role ARN of the app. This is needed for setting up bucket access roles. |
 <!-- END_TF_DOCS -->
