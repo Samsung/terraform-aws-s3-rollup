@@ -57,6 +57,8 @@ module "s3-access-log-roller" {
 }
 ```
 
+If there are already a large number of files in the logging buckets, it is suggested to set `enable_eventbridge_schedule = false` and run the producer manually to process all the existing files first, as Lambda has a maximum timeout of 15 minutes. After the backlog is cleared, enable EventBridge to run the app daily.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
