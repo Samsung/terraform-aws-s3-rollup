@@ -1,5 +1,7 @@
 # Terraform AWS S3 access log roller module
 
+![pytest workflow](https://github.com/Samsung/terraform-aws-s3-rollup/actions/workflows/pytest.yaml/badge.svg)
+
 ## Introduction
 
 When [server access logging](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html) is enabled for a frequently accessed bucket, a large number of log files are generated per day. Due to the small size and large quantity of these files, it is not suitable to transition them into "cheaper" [storage classes](https://aws.amazon.com/s3/storage-classes/) like Standard-IA or Glacier.
@@ -12,7 +14,7 @@ The app is designed to run in a [multi-account setup](https://docs.aws.amazon.co
 
 It is suggested to run a copy of app in each region, as S3 charges for inter-region traffic.
 
-![archicture](./architecture.png)
+![architecture](./architecture.png)
 
 ## Usage
 
@@ -57,7 +59,7 @@ module "s3-access-log-roller" {
 }
 ```
 
-If there are already a large number of files in the logging buckets, it is suggested to set `enable_eventbridge_schedule = false` and run the producer manually to process all the existing files first, as Lambda has a maximum timeout of 15 minutes. After the backlog is cleared, enable EventBridge to run the app daily.
+**If there are already a large number of files in the logging buckets**, it is suggested to set `enable_eventbridge_schedule = false` and [run the producer manually](./python/README.md) to process all the existing files first, as Lambda has a maximum timeout of 15 minutes. After the backlog is cleared, enable EventBridge to run the app daily.
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
@@ -119,3 +121,7 @@ No modules.
 |------|-------------|
 | <a name="output_iam_role_arn"></a> [iam\_role\_arn](#output\_iam\_role\_arn) | IAM role ARN of the app. This is needed for setting up bucket access roles. |
 <!-- END_TF_DOCS -->
+
+## Authors
+
+The module is maintained by [Zhuoyun Wei](https://github.com/wzyboy) from [Samsung Research Canada](https://research.samsung.com/srca).
