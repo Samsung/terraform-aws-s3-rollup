@@ -14,13 +14,13 @@ The app is designed to run in a [multi-account setup](https://docs.aws.amazon.co
 
 It is suggested to run a copy of app in each region, as S3 charges for inter-region traffic.
 
-![architecture](./architecture.png)
+![architecture](https://raw.githubusercontent.com/Samsung/terraform-aws-s3-rollup/master/architecture.png)
 
 ## Usage
 
 ```hcl
 module "s3-access-log-roller" {
-  source = "./modules/terraform-aws-s3-access-log-roller"
+  source = "Samsung/s3-rollup/aws"
 
   slug = "us-west-2"
 
